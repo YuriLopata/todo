@@ -2,6 +2,8 @@ import React from "react";
 import List from "./components/List/List";
 import AddList from "./components/AddList/AddList";
 
+import DB from './assets/db.json'
+
 function App() {
   return (
     <div className="todo">
@@ -45,17 +47,17 @@ function App() {
               name: "Movies",
             },
             {
-              color: "yellow",
+              color: "lime",
               name: "Books",
             },
             {
-              color: "gray",
+              color: "grey",
               name: "Private",
             },
           ]}
           isRemovable={true}
         />
-        <AddList />
+        <AddList colors={DB.colors}/>
       </div>
 
       <div className="todo__tasks"></div>

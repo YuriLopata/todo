@@ -1,13 +1,13 @@
 .list {
     margin-bottom: 25px;
 
-    &__button_add {
+    .add-list__button {
       opacity: 0.5;
+      transition: all 0.1s ease;
       
       &:hover {
         opacity: 1;
       }
-      
     }
 
     li {
@@ -23,40 +23,17 @@
         border-radius: 4px;
       }
 
+      .badge {
+        position: relative;
+        left: 3px;
+      }
+
       i {
         display: inline-flex;
         margin-right: 8px;
 
         svg {
           fill: #7c7c7c;
-        }
-      }
-
-      .badge {
-        width: 10px;
-        height: 10px;
-        border-radius: 30px;
-        position: relative;
-        left: 3px;
-        
-        &--green {
-          background-color: #42B883;
-        }
-
-        &--blue {
-          background-color: #64C4ED;
-        }
-        
-        &--pink {
-          background-color: #FFBBCC;
-        }
-        
-        &--yellow {
-          background-color: #B6E6BD;
-        }
-        
-        &--gray {
-          background-color: #C9D1D3;
         }
       }
     }

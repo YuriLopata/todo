@@ -1,13 +1,43 @@
 .add-list {
-
+    .list {
+        margin-bottom: 3px;
+    }
 
     &__popup {
+        left: 10px;
         width: 240px;
         height: 150px;
         background-color: #fff;
         box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
         border-radius: 10px;
         padding: 18px;
+        position: relative;
+        transition: all 0.1s ease;
+
+        &-close-btn {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            cursor: pointer;
+        }
+
+        &-colors {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+
+            .badge {
+                width: 20px;
+                height: 20px;
+                position: static;
+                cursor: pointer;
+                
+                &.active {
+                    border: 2px solid #525252;
+                }
+            }
+        }
     }
 
     .field {
