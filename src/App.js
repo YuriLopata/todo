@@ -1,5 +1,6 @@
 import React from "react";
 import List from "./components/List/List";
+import AddList from "./components/AddList/AddList";
 
 function App() {
   return (
@@ -23,34 +24,38 @@ function App() {
                 </svg>
               ),
               name: "All tasks",
-              active: true
             },
           ]}
+          isRemovable={false}
         />
+
         <List
           items={[
             {
-              color: 'green',
-              name: "Purchases"
+              color: "green",
+              name: "Purchases",
             },
             {
-              color: 'blue',
-              name: "IT"
+              color: "blue",
+              name: "IT",
+              active: true,
             },
             {
-              color: 'pink',
-              name: "Movies"
+              color: "pink",
+              name: "Movies",
             },
             {
-              color: 'yellow',
-              name: "Books"
+              color: "yellow",
+              name: "Books",
             },
             {
-              color: 'gray',
-              name: "Private"
-            }
+              color: "gray",
+              name: "Private",
+            },
           ]}
+          isRemovable={true}
         />
+        <AddList />
       </div>
 
       <div className="todo__tasks"></div>

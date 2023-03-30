@@ -6,7 +6,7 @@ import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode> // commented because of double render (console.log)
     <App />
-  </React.StrictMode>
+// </React.StrictMode>
 );
