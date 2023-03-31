@@ -6,9 +6,31 @@ import closeSvg from "../../assets/img/close.svg";
 
 import "./AddList.scss";
 
-const AddList = ({ colors }) => {
+const AddList = ({ colors, onAdd }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const [badgeColor, setBadgeColor] = useState(colors[0].id);
+  const [selectedColor, setSelectedColor] = useState(colors[0].id);
+  const [inputValue, setInputValue] = useState("");
+
+  const onClose = () => {
+    setVisiblePopup(false);
+    setInputValue("");
+    setSelectedColor(colors[0].id);
+  };
+
+  const addFolder = () => {
+    if (!inputValue) {
+      alert("Enter the folder name");
+      return;
+    }
+
+    const color = colors.filter((c) => c.id === selectedColor)[0].name;
+    onAdd({
+      id: Math.random(),
+      name: inputValue,
+      color: color,
+    });
+    onClose()
+  };
 
   return (
     <div className="add-list">
@@ -49,12 +71,14 @@ const AddList = ({ colors }) => {
       {visiblePopup && (
         <div className="add-list__popup">
           <img
-            onClick={() => setVisiblePopup(false)}
+            onClick={onClose}
             src={closeSvg}
             alt="Close button"
             className="add-list__popup-close-btn"
           ></img>
           <input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
             className="field"
             type="text"
             placeholder="Folder name"
@@ -62,14 +86,16 @@ const AddList = ({ colors }) => {
           <div className="add-list__popup-colors">
             {colors.map((color) => (
               <Badge
-                onClick={() => setBadgeColor(color.id)}
                 key={color.id}
                 color={color.name}
-                className={badgeColor === color.id && "active"}
+                className={selectedColor === color.id && "active"}
+                onClick={() => setSelectedColor(color.id)}
               />
             ))}
           </div>
-          <button className="button">Add</button>
+          <button className="button" onClick={addFolder}>
+            Add
+          </button>
         </div>
       )}
     </div>

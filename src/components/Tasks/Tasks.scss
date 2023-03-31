@@ -1,0 +1,106 @@
+.tasks {
+    &__title {
+        display: flex;
+        align-items: center;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
+        color: #64c4ed;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f2f2f2;
+        margin-bottom: 30px;
+
+        &:hover {
+            img {
+                display: block;
+            }
+        }
+
+        img {
+            display: none;
+            cursor: pointer;
+            opacity: 0.2;
+            margin-left: 15px;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .checkbox {
+        margin-right: 15px;
+
+        &:hover {
+            label {
+                background-color: #f2f2f2;
+                border-color: #f2f2f2;
+
+                svg {
+                    opacity: 1;
+
+                    path {
+                        stroke: #b2b2b2;
+                    }
+                }
+            }
+        }
+
+        input {
+            display: none;
+        }
+
+        label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border: 2px solid #e8e8e8;
+            border-radius: 30px;
+
+            svg {
+                opacity: 0;
+            }
+        }
+
+        svg {
+            path {
+                stroke: #f2f2f2;
+            }
+        }
+
+        input:checked + label {
+            background-color: #4dd599;
+            border: 2px solid #4dd599;
+
+            &:hover {
+                background-color: darken(#4dd599, 10%);
+                border-color: darken(#4dd599, 10%);
+            }
+
+            svg {
+                opacity: 1;
+
+                path {
+                    stroke: #fff;
+                }
+            }
+        }
+    }
+
+    &__items {
+        &-row {
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 100%;
+                font-size: 16px;
+                border: none;
+            }
+        }
+    }
+}

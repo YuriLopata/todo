@@ -15,5 +15,6 @@ module.exports = {
     },
     "plugins": ["only-warn"],
     "rules": {
+        "react/prop-types": "off"
     }
 }

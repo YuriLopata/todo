@@ -6,6 +6,7 @@
   list-style: none;
   outline: 0;
   font-family: "Roboto", -apple-system, system-ui, sans-serif;
+  transition: all 0.1s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,6 +14,7 @@
 .todo {
   width: 750px;
   height: 530px;
+  display: flex;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -28,6 +30,11 @@
     background-color: #f4f6f8;
     border-right: 1px solid #f1f1f1;
     padding: 60px 20px;
+  }
+
+  &__tasks {
+    flex: 1;
+    padding: 56px;
   }
 }
 

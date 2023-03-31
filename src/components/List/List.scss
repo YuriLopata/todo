@@ -1,40 +1,63 @@
 .list {
-    margin-bottom: 25px;
+  $self: &;
 
-    .add-list__button {
-      opacity: 0.5;
-      transition: all 0.1s ease;
-      
-      &:hover {
-        opacity: 1;
+  margin-bottom: 25px;
+
+  .add-list__button {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba($color: #fff, $alpha: 0.5);
+    }
+
+    &:hover #{$self}__remove-btn {
+      display: inline-flex;
+    }
+
+    &.active {
+      background: #ffffff;
+      box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.04);
+      border-radius: 4px;
+    }
+
+    .badge {
+      position: relative;
+      left: 3px;
+    }
+
+    i {
+      display: inline-flex;
+      margin-right: 8px;
+
+      svg {
+        fill: #7c7c7c;
       }
     }
 
-    li {
-      display: flex;
-      align-items: center;
-      padding: 10px 12px;
-      margin-bottom: 2px;
-      cursor: pointer;
+    span {
+      flex: 1;
+    }
 
-      &.active {
-        background: #FFFFFF;
-        box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.04);
-        border-radius: 4px;
-      }
+    .list__remove-btn {
+      display: none;
+      opacity: 0.2;
 
-      .badge {
-        position: relative;
-        left: 3px;
-      }
-
-      i {
-        display: inline-flex;
-        margin-right: 8px;
-
-        svg {
-          fill: #7c7c7c;
-        }
+      &:hover {
+        opacity: 0.8;
       }
     }
   }
+}
