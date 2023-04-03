@@ -13,16 +13,14 @@
 
 .todo {
   width: 750px;
-  height: 530px;
+  min-height: 530px;
   display: flex;
-  position: absolute;
-  left: 50%;
-  top: 50%;
   box-shadow: 1px 2px 20px #ebebeb;
   border: 1px solid #f1f1f1;
   border-radius: 10px;
   font-size: 14px;
-  transform: translate(-50%, -50%);
+  margin: auto;
+  margin-top: 5svh;
 
   &__sidebar {
     width: 200px;
