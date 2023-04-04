@@ -46,6 +46,9 @@ const AddList = ({ colors, onAdd }) => {
         onClose();
         setIsLoading(false)
       })
+      .catch(() => {
+        alert('Failad to add folder')
+      })
       .finally(() => {
         setIsLoading(false)
       })
@@ -101,7 +104,7 @@ const AddList = ({ colors, onAdd }) => {
             className="field"
             type="text"
             placeholder="Folder name"
-          ></input>
+          />
           <div className="add-list__popup-colors">
             {colors.map((color) => (
               <Badge

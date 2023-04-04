@@ -1,18 +1,38 @@
 import React from "react";
+import axios from "axios";
+
+import { AddTaskForm } from "./AddTaskForm";
 
 import editSvg from "../../assets/img/edit.svg";
 
 import "./Tasks.scss";
 
-const Tasks = ({ list }) => {
+const Tasks = ({ list, onAddTask, onEditTitle }) => {
+  const editTitle = () => {
+    const newTitle = window.prompt("Folder name", list.name);
+    if (newTitle) {
+      axios
+        .patch("http://localhost:3001/lists/" + list.id, {
+          name: newTitle,
+        })
+        .then (() => {
+          onEditTitle(list.id, newTitle)
+        })
+        .catch(() => {
+          alert("Failad to rename folder");
+        });
+    }
+  };
+
   return (
     <div className="tasks">
       <h2 className="tasks__title">
         {list.name}
-        <img src={editSvg} alt="Edit icon" />
+        <img onClick={editTitle} src={editSvg} alt="Edit icon" />
       </h2>
 
       <div className="tasks__items">
+        {!list.tasks.length && <h2>There are no tasks</h2>}
         {list.tasks.map((task) => (
           <div key={task.id} className="tasks__items-row">
             <div className="checkbox">
@@ -36,11 +56,10 @@ const Tasks = ({ list }) => {
               </label>
             </div>
 
-            <input
-              defaultValue={task.text}
-            ></input>
+            <input defaultValue={task.text}></input>
           </div>
         ))}
+        <AddTaskForm list={list} onAddTask={onAddTask}/>
       </div>
     </div>
   );

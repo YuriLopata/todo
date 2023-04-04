@@ -92,6 +92,18 @@
     }
 
     &__items {
+        h2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 28px;
+            color: #c9d1d3;
+        }
+
         &-row {
             display: flex;
             align-items: center;
@@ -101,6 +113,41 @@
                 width: 100%;
                 font-size: 16px;
                 border: none;
+            }
+        }
+    }
+
+    &__form {
+        margin-top: 20px;
+
+        &-new {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0.4;
+            margin-bottom: 15px;
+
+            &:hover {
+                opacity: 0.8;
+            }
+
+            img {
+                margin-left: 2px;
+                margin-right: 19px;
+            }
+
+            span {
+                font-size: 16px;
+            }
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        &-block {
+            .button {
+                margin-right: 10px;
             }
         }
     }

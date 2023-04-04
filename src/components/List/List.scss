@@ -49,6 +49,9 @@
 
     span {
       flex: 1;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-right: 5px;
     }
 
     .list__remove-btn {
