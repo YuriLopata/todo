@@ -25,11 +25,11 @@ export const AddTaskForm = ({ list, onAddTask }) => {
     axios
       .post("http://localhost:3001/tasks", obj)
       .then(({ data }) => {
-        console.log(data);
         onAddTask(list.id, data);
         toggleFormVisible();
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         alert('Failad to add task')
       })
       .finally(() => {

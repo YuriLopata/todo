@@ -12,8 +12,8 @@
 }
 
 .todo {
-  width: 750px;
-  min-height: 530px;
+  width: calc(100svw - 100px);
+  height: calc(100svh - 100px);
   display: flex;
   box-shadow: 1px 2px 20px #ebebeb;
   border: 1px solid #f1f1f1;
@@ -33,6 +33,7 @@
   &__tasks {
     flex: 1;
     padding: 56px;
+    overflow: auto;
   }
 }
 

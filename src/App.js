@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { List, AddList, Tasks } from "./components/Components";
 import axios from "axios";
-
-// import DB from './assets/db.json'
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 
 function App() {
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
+  let navigate = useNavigate();
+  let location = useLocation();
 
   useEffect(() => {
     axios
@@ -35,6 +36,74 @@ function App() {
     setLists(newList);
   };
 
+  const onEditTask = (listId, taskObj) => {
+    const newTaskText = window.prompt("Task text", taskObj.text);
+
+    if (!newTaskText) {
+      return;
+    }
+
+    const newList = lists.map((list) => {
+      if (list.id === listId) {
+        list.tasks = list.tasks.map((task) => {
+          if (task.id === taskObj.id) {
+            task.text = newTaskText;
+          }
+          return task;
+        });
+      }
+      return list;
+    });
+    setLists(newList);
+
+    axios
+      .patch("http://localhost:3001/tasks/" + taskObj.id, {
+        text: newTaskText,
+      })
+      .catch(() => {
+        alert("Failed to edit task");
+      });
+  };
+
+  const onRemoveTask = (listId, taskId) => {
+    if (window.confirm("Are you sure?")) {
+      const newList = lists.map((item) => {
+        if (item.id === listId) {
+          item.tasks = item.tasks.filter((task) => task.id !== taskId);
+        }
+        return item;
+      });
+      setLists(newList);
+
+      axios.delete("http://localhost:3001/tasks/" + taskId).catch(() => {
+        alert("Failed to remove task");
+      });
+    }
+  };
+
+  const onCompleteTask = (listId, taskId, completed) => {
+      const newList = lists.map((list) => {
+      if (list.id === listId) {
+        list.tasks = list.tasks.map((task) => {
+          if (task.id === taskId) {
+            task.completed = completed;
+          }
+          return task;
+        });
+      }
+      return list;
+    });
+    setLists(newList);
+
+    axios
+      .patch("http://localhost:3001/tasks/" + taskId, {
+        completed
+      })
+      .catch(() => {
+        alert("Failed to mark a task");
+      });
+  }
+
   const onEditFolderTitle = (id, title) => {
     const newList = lists.map((item) => {
       if (item.id === id) {
@@ -45,12 +114,24 @@ function App() {
     setLists(newList);
   };
 
+  useEffect(() => {
+    const listId = location.pathname.split("lists/")[1];
+    if (lists) {
+      const list = lists.find((list) => list.id === Number(listId));
+      setActiveItem(list);
+    }
+  }, [lists, location.pathname]);
+
   return (
     <div className="todo">
       <div className="todo__sidebar">
         <List
+          onClickItem={() => {
+            navigate("/");
+          }}
           items={[
             {
+              active: location.pathname === '/',
               icon: (
                 <svg
                   width="18"
@@ -78,8 +159,8 @@ function App() {
               const newLists = lists.filter((item) => item.id !== id);
               setLists(newLists);
             }}
-            onClickItem={(item) => {
-              setActiveItem(item);
+            onClickItem={(list) => {
+              navigate(`/lists/${list.id}`);
             }}
             activeItem={activeItem}
             isRemovable
@@ -91,13 +172,43 @@ function App() {
       </div>
 
       <div className="todo__tasks">
-        {lists && activeItem && (
-          <Tasks
-            list={activeItem}
-            onAddTask={onAddTask}
-            onEditTitle={onEditFolderTitle}
-          />
-        )}
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              lists &&
+              lists.map((list) => (
+                <Tasks
+                  key={list.id}
+                  list={list}
+                  onAddTask={onAddTask}
+                  onEditTitle={onEditFolderTitle}
+                  onEditTask={onEditTask}
+                  onRemoveTask={onRemoveTask}
+                  onCompleteTask={onCompleteTask}
+                  withoutEmpty
+                />
+              ))
+            }
+          ></Route>
+          <Route
+            path="/lists/:id"
+            element={
+              lists &&
+              activeItem && (
+                <Tasks
+                  list={activeItem}
+                  onAddTask={onAddTask}
+                  onEditTitle={onEditFolderTitle}
+                  onEditTask={onEditTask}
+                  onRemoveTask={onRemoveTask}
+                  onCompleteTask={onCompleteTask}
+                />
+              )
+            }
+          ></Route>
+        </Routes>
       </div>
     </div>
   );

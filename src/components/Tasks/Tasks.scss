@@ -1,4 +1,12 @@
 .tasks {
+    &:not(:last-of-type) {
+        margin-bottom: 40px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
     &__title {
         display: flex;
         align-items: center;
@@ -109,7 +117,38 @@
             align-items: center;
             margin-bottom: 15px;
 
-            input {
+            &:hover &-actions {
+                opacity: 0.8;
+            }
+
+            &-actions {
+                display: flex;
+                opacity: 0;
+
+                div {
+                    width: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-repeat: 5px;
+                    margin-left: 5px;
+                    cursor: pointer;
+
+                    &:hover {
+                        svg {
+                            opacity: 0.8;
+                        }
+                    }
+
+                    svg {
+                        width: 11px;
+                        height: 11px;
+                        opacity: 0.4;
+                    }
+                }
+            }
+
+            p {
                 width: 100%;
                 font-size: 16px;
                 border: none;

@@ -32,7 +32,7 @@ const AddList = ({ colors, onAdd }) => {
       return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     axios
       .post("http://localhost:3001/lists", {
@@ -40,18 +40,17 @@ const AddList = ({ colors, onAdd }) => {
         colorId: selectedColor,
       })
       .then(({ data }) => {
-        const color = colors.filter((c) => c.id === selectedColor)[0].name;
-        const listObj = {...data, color: { name: color }}
+        const color = colors.filter((c) => c.id === selectedColor)[0];
+        const listObj = { ...data, color, tasks: [] };
         onAdd(listObj);
         onClose();
-        setIsLoading(false)
       })
       .catch(() => {
-        alert('Failad to add folder')
+        alert("Failad to add folder");
       })
       .finally(() => {
-        setIsLoading(false)
-      })
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -116,7 +115,7 @@ const AddList = ({ colors, onAdd }) => {
             ))}
           </div>
           <button className="button" onClick={addFolder}>
-            {isLoading ? 'Adding...' : 'Add'}
+            {isLoading ? "Adding..." : "Add"}
           </button>
         </div>
       )}
