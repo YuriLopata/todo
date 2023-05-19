@@ -20,13 +20,14 @@
   border-radius: 10px;
   font-size: 14px;
   margin: auto;
-  margin-top: 5svh;
 
   &__sidebar {
     width: 200px;
     height: 100%;
-    background-color: #f4f6f8;
+    background-color: #e9eaec;
     border-right: 1px solid #f1f1f1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     padding: 60px 20px;
   }
 

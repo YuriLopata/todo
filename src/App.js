@@ -175,7 +175,7 @@ function App() {
         <Routes>
           <Route
             exact
-            path="/"
+            path="/todo/"
             element={
               lists &&
               lists.map((list) => (
@@ -193,7 +193,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/lists/:id"
+            path="/todo/lists/:id"
             element={
               lists &&
               activeItem && (

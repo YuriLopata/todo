@@ -1,6 +1,7 @@
 {
   "name": "todo",
   "version": "0.1.0",
+  "homepage": "https://yurilopata.github.io/todo/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -21,7 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fake-json": "json-server ./src/assets/db.json --watch --port 3001"
+    "fake-json": "json-server ./src/assets/db.json --watch --port 3001",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,7 +47,8 @@
   "devDependencies": {
     "eslint": "^8.37.0",
     "eslint-plugin-only-warn": "^1.1.0",
-    "eslint-plugin-react": "^7.32.2"
+    "eslint-plugin-react": "^7.32.2",
+    "gh-pages": "^5.0.0"
   },
   "lint": "eslint --max-warnings=0 ..."
 }
